@@ -1,0 +1,43 @@
+--Name: Anthony Bartholomaus
+--Author: Charles Carter
+--Date: Febuary 3, 2020
+
+use northwind;
+--1
+select * from Orders;
+select top (5) EmployeeID, count(EmployeeID) as totalsales 
+from orders
+group by employeeID
+order by totalsales desc;
+--2
+select * from [order details]
+	where UnitPrice > 50.0;
+
+select Productid, avg(discount) as avgdis 
+from [order details]
+	where UnitPrice > 50.0
+	group by ProductID;
+
+	select Productid, unitprice, avg(discount) as avgdis 
+from [order details]
+	where UnitPrice > 50.0
+	group by ProductID, unitprice
+	order by UnitPrice desc;
+
+
+SELECT ProductName,unitprice*UnitsInStock FROM Products order by ProductName asc;
+
+--7
+select SUM(UnitPrice*UnitsInStock) from products;
+
+--8
+SELECT CustomerID,EmployeeID, COUNT(CustomerID) AS TOTAL FROM Orders GROUP BY CustomerID, EmployeeID HAVING COUNT(CustomerID) < 5 ORDER BY CustomerID;
+
+--9
+SELECT DATEDIFF_BIG(NS,'2006/06/19',GETDATE());
+
+--10
+SELECT GETDATE();
+SELECT DATEFROMPARTS(2019,01,01);
+SELECT DATEFROMPARTS(2019,02,01);
+SELECT DATEFROMPARTS(2019,01,31);

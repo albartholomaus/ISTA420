@@ -1,7 +1,7 @@
 .echo on 
 .headers on 
 -- Name: Anthony Bartholomaus 
---file: sql-lab2aa.sql
+--file: sql-lab2a.sql
 --date: 1/21/2020
 
 --1. What are the regions?

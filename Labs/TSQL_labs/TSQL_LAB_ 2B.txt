@@ -1,7 +1,7 @@
 .echo on 
 .headers on 
 -- Name: Anthony Bartholomaus 
---file: sql-lab2aa.sql
+--file: sql-lab2b.sql
 --date: 1/21/2020
 
 --Who are our customers in North America?
