@@ -1,0 +1,45 @@
+--charles carter 
+--file: ch04 lab 
+--date 
+
+use TSQLV4;
+
+--1
+ 
+select	productid,productname,unitprice from Production.Products
+		where unitprice = 
+		(select max(unitprice) from Production.Products);
+go
+--2
+select productid, productname from Production.products 
+where productid = (select top (1) productid
+	from Sales.OrderDetails
+	group by productid
+	order by sum(qty) desc);
+go
+
+--3
+select empid,firstname,lastname, title
+from hr.employees
+where empid = 
+(select top(1) empid
+from sales.Orders
+group by empid 
+order by count(orderid) desc);
+go
+
+--4
+select od.orderid, (od.unitprice * od.qty) as lineT, 
+(select AVG(ood.unitprice * ood.qty) from sales.OrderDetails ood where ood.orderid = od.orderid) as orders_avg
+from sales.OrderDetails od;
+
+--5
+select max(qty) from sales.OrderDetails ood
+where ood.orderid=10248;
+select qty from Sales.OrderDetails where orderid = 10248;
+
+select od.orderid,od.productid, qty
+from Sales.OrderDetails od
+where qty = (select max(ood.qty) from sales.OrderDetails ood
+where ood.orderid=od.orderid);
+go

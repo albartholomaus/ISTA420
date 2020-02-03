@@ -1,0 +1,61 @@
+C:\Users\ServerPC1\Desktop\playpin1>sqlite3 myfamily.db < script.sql
+.headers on
+--Name: Anthony Bartholomaus
+--Author: Charles "the man" Carter
+--Date: January 14, 2020
+drop table if exists family;
+create table family (
+id integer primary key,
+name text,
+sex integer,
+role text,
+age integer
+);
+insert into family values (1, 'charles',1, 'parent',68);
+insert into family values (2, 'bonnie',0, 'parent', 49);
+insert into family values (3, 'casie',0, 'child',38);
+insert into family values (4, 'jackson',1,'child',30);
+insert into family values (5, 'midnight',0,'pet',3);
+insert into family values (6, 'max',1, 'pet',8);
+.schema family
+CREATE TABLE family (
+id integer primary key,
+name text,
+sex integer,
+role text,
+age integer
+);
+select * from family;
+id|name|sex|role|age
+1|charles|1|parent|68
+2|bonnie|0|parent|49
+3|casie|0|child|38
+4|jackson|1|child|30
+5|midnight|0|pet|3
+6|max|1|pet|8
+select * from family where sex = 1;
+id|name|sex|role|age
+1|charles|1|parent|68
+4|jackson|1|child|30
+6|max|1|pet|8
+select * from family where role like 'parent' ;
+id|name|sex|role|age
+1|charles|1|parent|68
+2|bonnie|0|parent|49
+select * from family where role like 'pet ';
+select name from family;
+name
+charles
+bonnie
+casie
+jackson
+midnight
+max
+select avg(age) from family;
+avg(age)
+32.6666666666667
+select sum(age) from family;
+sum(age)
+196
+
+C:\Users\ServerPC1\Desktop\playpin1>

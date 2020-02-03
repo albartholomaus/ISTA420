@@ -1,0 +1,50 @@
+
+C:\Users\ServerPC1\Desktop\playpin1>sqlite3 < computerlist.sql
+.headers on
+--Name: Anthony Bartholomaus
+--Author: Charles "the man" Carter
+--Date: January 14, 2020
+drop table if exists ComputerList;
+
+create table ComputerList (
+id integer primary key,
+company text,
+model_year char,
+ram text,
+model ENUM
+);
+
+insert into ComputerList values (1, 'asus',2011, '4GB','asus');
+insert into     ComputerList values (2, 'dell',2014, '16GB', 'insperation');
+insert into ComputerList values (3, 'dell',2020, '32GB','alien');
+.schema ComputerList
+CREATE TABLE ComputerList (
+id integer primary key,
+company text,
+model_year char,
+ram text,
+model ENUM
+);
+select * from ComputerList;
+id|company|model_year|ram|model
+1|asus|2011|4GB|asus
+2|dell|2014|16GB|insperation
+3|dell|2020|32GB|alien
+select * from ComputerList where model_year = 2011;
+id|company|model_year|ram|model
+1|asus|2011|4GB|asus
+select * from ComputerList where ram like '16GB' ;
+id|company|model_year|ram|model
+2|dell|2014|16GB|insperation
+select * from ComputerList where model like '32BG';
+select model from ComputerList;
+model
+asus
+insperation
+alien
+--sqlite3 < Scriptname.txt
+
+
+
+
+C:\Users\ServerPC1\Desktop\playpin1>
