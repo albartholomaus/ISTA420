@@ -1,0 +1,45 @@
+--name: Anthony Bartholomaus
+--file: TSQL_LAB_ 6
+--date: febuary 10,2020
+
+-- Write a query that returns customer and employee pairs that had order activity in January 2016 but not
+-- in February 2016:
+use TSQLV4;
+--remove the year month..see what happens
+select custid,empid, year(orderdate)as year, month(orderdate) as month from Sales.orders
+where orderdate like '2016-01%'
+except--could of had orders in feb but his will remove that. 
+select custid,empid, year(orderdate)as year, month(orderdate) as month from Sales.orders
+where orderdate like '2016-02%';
+
+--Write a query that returns customer and employee pairs that had order activity in both January 2016
+--and February 2016:
+select custid,empid  from Sales.orders
+where orderdate like '2016-01%'
+intersect 
+select custid,empid from Sales.orders
+where orderdate like '2016-02%';
+
+--write a quary that returns all custoner and employee pairs that had activity in jan 2016
+--and feb 2016 but did not have activity in both years 
+(select custid,empid  from Sales.orders
+where orderdate like '2016-01%'
+union 
+select custid,empid from Sales.orders
+where orderdate like '2016-02%')
+except
+(select custid,empid  from Sales.orders
+where orderdate like '2016-01%'
+intersect 
+select custid,empid from Sales.orders
+where orderdate like '2016-02%')
+--Write a query that returns customer and employee pairs that had order activity in both January 2016
+--and February 2016 but not in 2015:
+select custid,empid  from Sales.orders
+where orderdate like '2016-01%'
+intersect 
+select custid,empid from Sales.orders
+where orderdate like '2016-02%'
+except
+(select custid,empid from Sales.orders
+where year(orderdate)=2015);
